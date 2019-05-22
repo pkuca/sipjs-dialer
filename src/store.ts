@@ -82,7 +82,7 @@ export default new Vuex.Store({
       const session = userAgent.invite(destinationURI, options)
       session.on('SessionDescriptionHandler-created', () => {
         const { sessionDescriptionHandler } = session
-        session.sessionDescriptionHandler.once('addTrack', (trackEvent: RTCTrackEvent) => {
+        sessionDescriptionHandler.once('addTrack', (trackEvent: RTCTrackEvent) => {
           const [stream] = trackEvent.streams
           const remoteAudioElement = <HTMLAudioElement>document.getElementById('remoteAudio')
           if (remoteAudioElement) {
