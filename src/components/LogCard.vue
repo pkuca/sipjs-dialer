@@ -5,7 +5,7 @@
         <v-card id="logbox" style="max-height:50em;" class="scroll-y">
           <template v-for="log in userAgentLog">
             <p
-              style="font-family:monospace;font-size:10px;margin:0px;"
+              style="font-family:monospace;font-size:10px;margin:0;"
               :key="log.id"
             >{{ log.timestamp }} {{ log.category }}.{{ log.level }} {{ log.content }}</p>
           </template>
@@ -17,7 +17,6 @@
 </template>
 
 <script>
-import Vue from 'vue'
 import { mapGetters } from 'vuex'
 
 export default {
