@@ -4,40 +4,41 @@
       <v-flex xs12>
         <v-card>
           <v-btn
-            small
+            tile
             style="width:13em"
             :disabled="!!userAgent"
             @click="startUserAgent"
-          >Initialize User Agent</v-btn>
+          >Initialize</v-btn>
           <v-btn
-            small
+            tile
             style="width:13em"
             :disabled="userAgent === null || session !== null"
             @click="startSession"
             color="green"
-          >Start Session</v-btn>
+          >Start</v-btn>
           <v-btn
-            small
+            tile
             style="width:13em"
             :disabled="session === null"
             @click="stopSession"
             color="red"
-          >Stop Session</v-btn>
+          >Stop</v-btn>
         </v-card>
       </v-flex>
     </v-layout>
   </v-container>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from 'vue'
 import { mapActions, mapGetters } from 'vuex'
 
-export default {
+export default Vue.extend({
   computed: {
     ...mapGetters(['session', 'userAgent', 'iceUp'])
   },
   methods: {
     ...mapActions(['startUserAgent', 'startSession', 'stopSession'])
   }
-}
+})
 </script>

@@ -1,20 +1,19 @@
 <template>
-  <v-app :dark="this.darkTheme">
+  <v-app>
     <audio id="remoteAudio"/>
     <audio id="localAudio" muted="muted"/>
 
-    <v-toolbar app dense>
-      <v-toolbar-title>sip.js</v-toolbar-title>
-      <v-spacer/>
+    <v-app-bar app dense>
+      <v-toolbar-title class="headline"><span>sip.js</span></v-toolbar-title>
+      <v-spacer></v-spacer>
       <v-toolbar-items>
-        <v-switch style="padding:.75em;" v-model="hideConfigCard" label="hide config card"/>
+        <v-switch style="padding:.75em;" v-model="hideConfigCard" label="hide config"/>
         <v-spacer/>
-        <v-switch style="padding:.75em;" v-model="hideLogCard" label="hide log card"/>
+        <v-switch style="padding:.75em;" v-model="hideLogCard" label="hide log"/>
         <v-spacer/>
-        <v-switch style="padding:.75em;" v-model="darkTheme" label="use dark theme"/>
+        <v-switch style="padding:.75em;" v-model="$vuetify.theme.dark" label="lights out"/>
       </v-toolbar-items>
-      <v-spacer/>
-    </v-toolbar>
+    </v-app-bar>
 
     <v-content>
       <ButtonPanelCard/>
@@ -24,7 +23,7 @@
   </v-app>
 </template>
 
-<script>
+<script lang="ts">
 import Vue from 'vue'
 import ButtonPanelCard from './components/ButtonPanelCard.vue'
 import ConfigCard from './components/ConfigCard.vue'
@@ -32,15 +31,14 @@ import LogCard from './components/LogCard.vue'
 
 export default Vue.extend({
   name: 'App',
-  data: () => ({
-    darkTheme: false,
-    hideConfigCard: false,
-    hideLogCard: false
-  }),
   components: {
     ButtonPanelCard,
     ConfigCard,
     LogCard
-  }
+  },
+  data: () => ({
+    hideConfigCard: false,
+    hideLogCard: false
+  })
 })
 </script>

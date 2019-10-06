@@ -2,7 +2,7 @@
   <v-container fluid>
     <v-layout align-center column fill-height justify-center>
       <v-flex xs12>
-        <v-card id="logbox" style="max-height:50em;" class="scroll-y">
+        <v-card id="logbox" style="max-height:46em; overflow-y: scroll;">
           <template v-for="log in userAgentLog">
             <p
               style="font-family:monospace;font-size:10px;margin:0;"
@@ -16,10 +16,11 @@
   </v-container>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from 'vue'
 import { mapGetters } from 'vuex'
 
-export default {
+export default Vue.extend({
   computed: {
     ...mapGetters(['userAgentLog'])
   },
@@ -31,5 +32,5 @@ export default {
       }, 0)
     }
   }
-}
+})
 </script>
