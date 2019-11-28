@@ -1,3 +1,6 @@
+# sipjs-dialer
+
+## Scripts
 ```
 {
   "serve": "vue-cli-service serve",
