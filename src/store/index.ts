@@ -44,7 +44,7 @@ export default new Vuex.Store({
       }
       const log = {
         builtinEnabled: false,
-        level: 4,
+        level: 3,
         connector: (level: string, category: string, label: string | undefined, content: any) => {
           const current = userAgentLog
           current.push({
