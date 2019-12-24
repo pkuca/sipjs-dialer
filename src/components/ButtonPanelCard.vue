@@ -43,7 +43,7 @@ import { mapActions, mapGetters } from 'vuex'
 
 export default Vue.extend({
   computed: {
-    ...mapGetters(['session', 'userAgent', 'iceUp'])
+    ...mapGetters(['session', 'userAgent'])
   },
   methods: {
     ...mapActions(['startUserAgent', 'startSession', 'stopSession'])
