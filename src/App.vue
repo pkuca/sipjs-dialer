@@ -2,19 +2,7 @@
   <v-app>
     <audio id="remoteAudio"/>
     <audio id="localAudio" muted="muted"/>
-
-    <v-app-bar app dense>
-      <v-toolbar-title class="headline"><span>sip.js</span></v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-toolbar-items>
-        <v-switch style="padding:.75em;" v-model="hideConfigCard" label="hide config"/>
-        <v-spacer/>
-        <v-switch style="padding:.75em;" v-model="hideLogCard" label="hide log"/>
-        <v-spacer/>
-        <v-switch style="padding:.75em;" v-model="$vuetify.theme.dark" label="lights out"/>
-      </v-toolbar-items>
-    </v-app-bar>
-
+    <AppBar/>
     <v-content>
       <ButtonPanelCard/>
       <ConfigCard :hidden="hideConfigCard"/>
@@ -25,20 +13,22 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import AppBar from './components/AppBar.vue'
 import ButtonPanelCard from './components/ButtonPanelCard.vue'
 import ConfigCard from './components/ConfigCard.vue'
 import LogCard from './components/LogCard.vue'
+import { mapActions, mapGetters } from 'vuex'
 
 export default Vue.extend({
   name: 'App',
   components: {
+    AppBar,
     ButtonPanelCard,
     ConfigCard,
     LogCard
   },
-  data: () => ({
-    hideConfigCard: false,
-    hideLogCard: false
-  })
+  computed: {
+    ...mapGetters(['hideConfigCard', 'hideLogCard'])
+  }
 })
 </script>

@@ -17,7 +17,9 @@ export default new Vuex.Store({
       wsServer: 'wss://example.org'
     },
     userAgentLog: <Array<Object>>[],
-    iceUp: false
+    iceUp: false,
+    hideConfigCard: false,
+    hideLogCard: false
   },
   getters: {
     session: state => state.session,
@@ -25,11 +27,19 @@ export default new Vuex.Store({
     userAgent: state => state.userAgent,
     userAgentConfig: state => state.userAgentConfig,
     userAgentLog: state => state.userAgentLog,
-    iceUp: state => state.iceUp
+    iceUp: state => state.iceUp,
+    hideConfigCard: state => state.hideConfigCard,
+    hideLogCard: state => state.hideLogCard
   },
   mutations: {
     SET_ICE_UP (state, val) {
       Vue.set(state, 'iceUp', val)
+    },
+    SET_HIDE_CONFIG_VAL (state, val) {
+      Vue.set(state, 'hideConfigCard', val)
+    },
+    SET_HIDE_LOG_VAL (state, val) {
+      Vue.set(state, 'hideLogCard', val)
     },
     SET_SESSION (state, session) {
       Vue.set(state, 'session', session)
@@ -68,6 +78,12 @@ export default new Vuex.Store({
     }
   },
   actions: {
+    setHideConfigCard (context, val) {
+      context.commit('SET_HIDE_CONFIG_VAL', val)
+    },
+    setHideLogCard (context, val) {
+      context.commit('SET_HIDE_LOG_VAL', val)
+    },
     startUserAgent (context) {
       context.commit('INIT_USER_AGENT')
     },
