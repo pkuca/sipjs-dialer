@@ -8,21 +8,28 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     session: null,
-    sessionConfig: { destinationURI: 'sip:hello@example.org' },
+    sessionConfig: {
+      proto: 'sip',
+      user: 'hello',
+      domain: 'example.com'
+    },
     userAgent: null,
     userAgentConfig: {
       logLevel: 1,
       realm: generate({ length: 8, charset: 'abcdefghijklmnopqrstuvwxyz' }),
       user: generate({ length: 8, charset: 'abcdefghijklmnopqrstuvwxyz' }),
-      wsServer: 'wss://example.org'
+      wsServer: 'wss://example.com'
     },
     userAgentLog: <Array<Object>>[],
     hideConfigCard: false,
     hideLogCard: false
   },
   getters: {
+    destinationURI: state => {
+      const { domain, proto, user } = state.sessionConfig
+      return `${proto}:${user}@${domain}`
+    },
     session: state => state.session,
-    sessionConfig: state => state.sessionConfig,
     userAgent: state => state.userAgent,
     userAgentConfig: state => state.userAgentConfig,
     userAgentLog: state => state.userAgentLog,
@@ -83,8 +90,7 @@ export default new Vuex.Store({
       context.commit('INIT_USER_AGENT')
     },
     startSession (context) {
-      const { userAgent } = context.getters
-      const { destinationURI } = context.getters.sessionConfig
+      const { destinationURI, userAgent } = context.getters
       const options = {
         sessionDescriptionHandlerOptions: {
           constraints: { audio: true, video: false }

@@ -21,7 +21,7 @@
             />
             <v-text-field
               style="font-family:monospace;font-size:10px"
-              v-model="sessionConfig.destinationURI"
+              v-model="destinationURI"
               label="Destination URI"
             />
           </v-card-text>
@@ -38,7 +38,7 @@ import { mapGetters } from 'vuex'
 
 export default Vue.extend({
   computed: {
-    ...mapGetters(['sessionConfig', 'userAgentConfig'])
+    ...mapGetters(['destinationURI', 'userAgentConfig'])
   }
 })
 </script>
