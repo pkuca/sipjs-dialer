@@ -17,7 +17,6 @@ export default new Vuex.Store({
       wsServer: 'wss://example.org'
     },
     userAgentLog: <Array<Object>>[],
-    iceUp: false,
     hideConfigCard: false,
     hideLogCard: false
   },
@@ -27,14 +26,10 @@ export default new Vuex.Store({
     userAgent: state => state.userAgent,
     userAgentConfig: state => state.userAgentConfig,
     userAgentLog: state => state.userAgentLog,
-    iceUp: state => state.iceUp,
     hideConfigCard: state => state.hideConfigCard,
     hideLogCard: state => state.hideLogCard
   },
   mutations: {
-    SET_ICE_UP (state, val) {
-      Vue.set(state, 'iceUp', val)
-    },
     SET_HIDE_CONFIG_VAL (state, val) {
       Vue.set(state, 'hideConfigCard', val)
     },
@@ -104,7 +99,6 @@ export default new Vuex.Store({
           if (remoteAudioElement) {
             remoteAudioElement.srcObject = stream
             remoteAudioElement.play()
-            context.commit('SET_ICE_UP', true)
           }
         })
         sessionDescriptionHandler.once('iceConnectionClosed', () => {
@@ -117,7 +111,6 @@ export default new Vuex.Store({
       const { session } = context.getters
       if (session) {
         session.terminate()
-        context.commit('SET_ICE_UP', false)
         context.commit('SET_SESSION', null)
       }
     }
