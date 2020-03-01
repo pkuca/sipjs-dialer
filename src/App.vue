@@ -17,7 +17,7 @@ import AppBar from './components/AppBar.vue'
 import ButtonPanelCard from './components/ButtonPanelCard.vue'
 import ConfigCard from './components/ConfigCard.vue'
 import LogCard from './components/LogCard.vue'
-import { mapActions, mapGetters } from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default Vue.extend({
   name: 'App',
