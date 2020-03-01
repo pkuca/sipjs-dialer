@@ -20,7 +20,7 @@ export default new Vuex.Store({
       user: generate({ length: 8, charset: 'abcdefghijklmnopqrstuvwxyz' }),
       wsServer: 'wss://example.com'
     },
-    userAgentLog: <Array<Object>>[],
+    userAgentLog: [] as Array<Record<string, any>>,
     hideConfigCard: false,
     hideLogCard: false
   },
@@ -101,7 +101,7 @@ export default new Vuex.Store({
         const { sessionDescriptionHandler } = session
         sessionDescriptionHandler.once('addTrack', (trackEvent: RTCTrackEvent) => {
           const [stream] = trackEvent.streams
-          const remoteAudioElement = <HTMLAudioElement>document.getElementById('remoteAudio')
+          const remoteAudioElement = document.getElementById('remoteAudio') as HTMLAudioElement
           if (remoteAudioElement) {
             remoteAudioElement.srcObject = stream
             remoteAudioElement.play()
