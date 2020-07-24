@@ -9,16 +9,16 @@ export default new Vuex.Store({
   state: {
     session: null,
     sessionConfig: {
-      proto: process.env.VUE_APP_PROTO,
-      user: process.env.VUE_APP_USER,
-      domain: process.env.VUE_APP_DOMAIN
+      proto: process.env.VUE_APP_PROTO || 'sip',
+      user: process.env.VUE_APP_USER || 'hello',
+      domain: process.env.VUE_APP_DOMAIN || 'example.com'
     },
     userAgent: null,
     userAgentConfig: {
       logLevel: 1,
       realm: generate({ length: 8, charset: 'abcdefghijklmnopqrstuvwxyz' }),
       user: generate({ length: 8, charset: 'abcdefghijklmnopqrstuvwxyz' }),
-      wsServer: process.env.VUE_APP_WSSERVER
+      wsServer: process.env.VUE_APP_WSSERVER || 'wss://example.com'
     },
     userAgentLog: [] as Array<Record<string, any>>,
     hideConfigCard: false,
